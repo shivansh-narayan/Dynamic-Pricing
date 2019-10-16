@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(Controller.MARKET_API_ENDPOINT)
 public class Controller {
 
-    public static final String MARKET_API_ENDPOINT = "/deats";
-    public static final String MARKETS_API = "/markets";
+    static final String MARKET_API_ENDPOINT = "/deats";
+     private static final String MARKETS_API = "/markets";
 
-    public static final String GROCERS_API = "/grocers";
+     private static final String GROCERS_API = "/grocers";
 
-    public static final String PRODUCTS_API = "/products";
+     private static final String PRODUCTS_API = "/products";
 
     @Autowired
     private MarketService marketService;
@@ -34,10 +34,7 @@ public class Controller {
 
 
 
-    /*
-        gives nearby areas
-        also can search a particular area
-     */
+    //http://localhost:8080/deats/markets
     @GetMapping(MARKETS_API)
     public ResponseEntity<GetMarketsResponse> getMarkets(GetMarketsRequest getMarketsRequest) {
         GetMarketsResponse getMarketsResponse;
@@ -46,14 +43,14 @@ public class Controller {
 
         return ResponseEntity.ok().body(getMarketsResponse);
     }
-
+    // http://localhost:8080/deats/grocers?marketName=Azadpur
     @GetMapping(GROCERS_API)
     public ResponseEntity<GetGrocersResponse> getGrocers (GetGrocersRequest getGrocersRequest) {
 
         GetGrocersResponse getGrocersResponse = groceryService.findGroceryByMarket(getGrocersRequest);
         return ResponseEntity.ok().body(getGrocersResponse);
     }
-
+    // http://localhost:8080/deats/products?groceryName=Sharma kirana&marketName=Shahdara
     @GetMapping(PRODUCTS_API)
     public ResponseEntity<GetProductsResponse> getProducts (GetProductRequest getProductRequest) {
 
