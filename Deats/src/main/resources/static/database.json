@@ -1,0 +1,64 @@
+{
+  "markets": [
+    {
+      "name": "Shahdara",
+      "grocers": [
+        {
+          "name": "Gupta Grocers",
+          "quantity": ["15","56","78","12","5"],
+          "price": ["15","56","78","12","5"]
+        },
+        {
+          "name": "Sharma kirana",
+          "quantity": ["52","57","65","21","46"],
+          "price": ["15","56","78","12","5"]
+        },
+        {
+          "name": "Arvind Stores",
+          "quantity": ["75","32","5","5","75"],
+          "price": ["15","56","78","12","5"]
+        }
+      ]
+    },
+    {
+      "name": "Keshopur",
+      "grocers": [
+        {
+          "name": "Hometown Gourmet",
+          "quantity": ["53","53","31","31","2"],
+          "price": ["15","56","78","12","5"]
+        },
+        {
+          "name": "Green and Fresh",
+          "quantity": ["51","5","52","653","58"],
+          "price": ["15","56","78","12","5"]
+        },
+        {
+          "name": "Able Market",
+          "quantity": ["52","572","21","21","57"],
+          "price": ["15","56","78","12","5"]
+        }
+      ]
+    },
+    {
+      "name": "Azadpur",
+      "grocers": [
+        {
+          "name": "TheFarmStand",
+          "quantity": ["58","87","93","75","78"],
+          "price": ["15","56","78","12","5"]
+        },
+        {
+          "name": "The Farm Shop",
+          "quantity": ["86","25","75","15","63"],
+          "price": ["15","56","78","12","5"]
+        },
+        {
+          "name": "Farmopolis",
+          "quantity": ["37","53","16","45","26"],
+          "price": ["15","56","78","12","5"]
+        }
+      ]
+    }
+  ]
+}
