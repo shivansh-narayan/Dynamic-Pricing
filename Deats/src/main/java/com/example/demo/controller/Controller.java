@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.exchanges.*;
+import com.example.demo.services.CartService;
 import com.example.demo.services.GroceryService;
 import com.example.demo.services.MarketService;
 import com.example.demo.services.ProductService;
@@ -18,12 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(Controller.MARKET_API_ENDPOINT)
 public class Controller {
 
-    static final String MARKET_API_ENDPOINT = "/deats";
+      static final String MARKET_API_ENDPOINT = "/deats";
+
      private static final String MARKETS_API = "/markets";
 
      private static final String GROCERS_API = "/grocers";
 
      private static final String PRODUCTS_API = "/products";
+
+     private static final String CART_VIEW_API = "/cart/view";
+
+     private static final String CART_UPDATE_API = "/cart/add";
+
+     private static final String CART_CHECKOUT_API = "/cart/final";
 
     @Autowired
     private MarketService marketService;
@@ -31,6 +39,8 @@ public class Controller {
     private GroceryService groceryService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CartService cartService;
 
 
 
@@ -57,6 +67,14 @@ public class Controller {
         GetProductsResponse getProductsResponse= productService.findProductByGrocery(getProductRequest);
 
         return ResponseEntity.ok().body(getProductsResponse);
+    }
+
+    @GetMapping(CART_VIEW_API)
+    public ResponseEntity<GetCartResponse> viewCart (ViewCartRequest viewCartRequest) {
+
+        GetCartResponse getCartResponse = cartService.view(viewCartRequest);
+
+        return ResponseEntity.ok().body(getCartResponse);
     }
 
 
