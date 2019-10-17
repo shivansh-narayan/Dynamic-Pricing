@@ -9,12 +9,16 @@ import lombok.Data;
 public class Products {
 
     String name;
+    String market;
+    String grocer;
     int quantity;
     int price;
 
-    public Products(int i, int q, String s) {
-        price=i;
-        quantity=q;
-        name=s;
+    public Products(String name, String market, String grocer, int quantity, int price) {
+        this.name = name;
+        this.market = market;
+        this.grocer = grocer;
+        this.quantity = quantity;
+        this.price = price;
     }
 }
