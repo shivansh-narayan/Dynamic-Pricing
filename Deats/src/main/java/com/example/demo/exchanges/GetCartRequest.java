@@ -3,7 +3,7 @@ package com.example.demo.exchanges;
 import lombok.Data;
 
 @Data
-public class ViewCartRequest {
+public class GetCartRequest {
 
     String cartId;
 }

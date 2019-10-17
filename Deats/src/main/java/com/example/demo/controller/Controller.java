@@ -31,7 +31,11 @@ public class Controller {
 
      private static final String CART_UPDATE_API = "/cart/add";
 
+     private static  final String CART_REMOVE_API = "/cart/remove";
+
      private static final String CART_CHECKOUT_API = "/cart/final";
+
+     private static final String CART_PRESENT_API ="/cart/present";
 
     @Autowired
     private MarketService marketService;
@@ -69,13 +73,34 @@ public class Controller {
         return ResponseEntity.ok().body(getProductsResponse);
     }
 
-    @GetMapping(CART_VIEW_API)
-    public ResponseEntity<GetCartResponse> viewCart (ViewCartRequest viewCartRequest) {
 
-        GetCartResponse getCartResponse = cartService.view(viewCartRequest);
+    //http://localhost:8080/deats/cart/present?cartId=5da8ab2d7d1820b0bddbf6aa
+    // reponse is not json simple true or false
+    @GetMapping(CART_PRESENT_API)
+    public ResponseEntity<Boolean> presentCart (GetCartRequest getCartRequest) {
+
+        boolean ans = cartService.present(getCartRequest);
+
+        return ResponseEntity.ok().body(ans);
+
+    }
+
+    @GetMapping(CART_VIEW_API)
+    public ResponseEntity<GetCartResponse> viewCart (GetCartRequest getCartRequest) {
+
+        GetCartResponse getCartResponse = cartService.view(getCartRequest);
 
         return ResponseEntity.ok().body(getCartResponse);
     }
+
+    @GetMapping(CART_REMOVE_API)
+    public ResponseEntity<GetCartResponse> removeCart (GetCartRequest getCartRequest) {
+
+        GetCartResponse getCartResponse = cartService.remove(getCartRequest);
+
+        return ResponseEntity.ok().body(getCartResponse);
+    }
+
 
 
 }

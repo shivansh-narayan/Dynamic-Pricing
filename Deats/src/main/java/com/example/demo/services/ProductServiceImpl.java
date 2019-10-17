@@ -7,15 +7,13 @@ import com.example.demo.exchanges.GetProductRequest;
 import com.example.demo.exchanges.GetProductsResponse;
 import com.example.demo.models.MarketsEntity;
 import com.example.demo.repositories.MarketsRepository;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@Log4j2
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -40,8 +38,7 @@ public class ProductServiceImpl implements ProductService {
                     {
                         int[] price = g.getPrice();
                         int[] quantity = g.getQuantity();
-                        log.error("quantity array");
-                        log.info(Arrays.toString(quantity));
+
                         String[] name= {"Onion", "tomato", "rice", "wheat", "apple"};
 
                         for(int i=0;i<4;i++)
