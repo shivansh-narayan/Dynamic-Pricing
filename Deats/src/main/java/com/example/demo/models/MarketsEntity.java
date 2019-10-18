@@ -17,6 +17,7 @@ public class MarketsEntity {
     @Id
     public String id;
     String name;
+    int[] life;
     int[] demand;
     Grocers[] grocers;
 

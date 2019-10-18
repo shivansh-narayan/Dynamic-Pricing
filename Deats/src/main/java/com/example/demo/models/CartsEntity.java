@@ -18,5 +18,6 @@ public class CartsEntity {
 
     @Id
     String cartId;
+    String email;
     List<Products> products;
 }

@@ -37,6 +37,9 @@ public class Controller {
 
      private static final String CART_PRESENT_API ="/cart/present";
 
+     private static final String CART_CREATE_API = "/cart/create";
+
+
     @Autowired
     private MarketService marketService;
     @Autowired
@@ -95,13 +98,16 @@ public class Controller {
         return ResponseEntity.ok().body(getCartResponse);
     }
 
-    @GetMapping(CART_REMOVE_API)
-    public ResponseEntity<GetCartResponse> removeCart (GetCartRequest getCartRequest) {
+    //http://localhost:8080/deats/cart/create?email=utk@gmail.com
+    @GetMapping(CART_CREATE_API)
+    public ResponseEntity<GetCartResponse> createCart (CreateCartRequest createCartRequest) {
 
-        GetCartResponse getCartResponse = cartService.remove(getCartRequest);
+        GetCartResponse getCartResponse = cartService.create(createCartRequest);
 
         return ResponseEntity.ok().body(getCartResponse);
     }
+
+
 
 
 

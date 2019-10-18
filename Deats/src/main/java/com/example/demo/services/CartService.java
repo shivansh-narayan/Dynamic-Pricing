@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.exchanges.CreateCartRequest;
 import com.example.demo.exchanges.GetCartResponse;
 import com.example.demo.exchanges.GetCartRequest;
 
@@ -16,5 +17,7 @@ public interface CartService {
     GetCartResponse checkout(GetCartRequest getCartRequest);
 
     boolean present(GetCartRequest getCartRequest);
+
+    GetCartResponse create(CreateCartRequest createCartRequest);
 
 }

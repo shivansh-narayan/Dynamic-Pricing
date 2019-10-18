@@ -13,9 +13,11 @@ import java.util.List;
 public class GetCartResponse {
 
     String cartId;
+    String email;
     List<Products> products;
 
-    public GetCartResponse(String i, List<Products> p) {
+    public GetCartResponse(String i,String e, List<Products> p) {
+        email=e;
         cartId=i;
         products=p;
     }

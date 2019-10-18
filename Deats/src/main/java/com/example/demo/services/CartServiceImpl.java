@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.exchanges.CreateCartRequest;
 import com.example.demo.exchanges.GetCartResponse;
 import com.example.demo.exchanges.GetCartRequest;
 import com.example.demo.models.CartsEntity;
@@ -26,7 +27,7 @@ public class CartServiceImpl implements CartService {
         CartsEntity cartsEntity = byId.get();
         GetCartResponse getCartResponse;
 
-        getCartResponse= new GetCartResponse(cartsEntity.getCartId(),cartsEntity.getProducts());
+        getCartResponse= new GetCartResponse(cartsEntity.getCartId(),cartsEntity.getEmail(),cartsEntity.getProducts());
 
         return getCartResponse;
 
@@ -69,5 +70,27 @@ public class CartServiceImpl implements CartService {
         }
 
 
+    }
+
+    @Override
+    public GetCartResponse create(CreateCartRequest createCartRequest) {
+
+        String email=createCartRequest.getEmail();
+         CartsEntity cartsEntity = new CartsEntity();
+         cartsEntity.setEmail(email);
+
+         cartsRepository.insert(cartsEntity);
+
+        List<CartsEntity> all = cartsRepository.findAll();
+
+
+        for(CartsEntity c : all) {
+            if(c.getEmail().equalsIgnoreCase(email))
+            {
+                return  new GetCartResponse(c.getCartId(),c.getEmail(),c.getProducts());
+            }
+        }
+
+        return null;
     }
 }
