@@ -3,12 +3,13 @@ package com.example.demo.services;
 import com.example.demo.exchanges.CreateCartRequest;
 import com.example.demo.exchanges.GetCartResponse;
 import com.example.demo.exchanges.GetCartRequest;
+import com.example.demo.exchanges.GetCartUpdateRequest;
 
 public interface CartService {
 
     GetCartResponse view(GetCartRequest getCartRequest);
 
-    GetCartResponse add(GetCartRequest getCartRequest);
+    GetCartResponse add(GetCartUpdateRequest getCartUpdateRequest);
 
     GetCartResponse remove(GetCartRequest getCartRequest);
 

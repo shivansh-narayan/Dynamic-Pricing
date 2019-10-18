@@ -71,6 +71,48 @@
      "email": "utk@gmail.com",
      "products": null
  }`
+ 
+ 
+ {"Onion", "tomato", "rice", "wheat", "apple"}   ye product ka index hai
+ 
+ >>[http://localhost:8080/deats/cart/add?cartId=5da94f827d1820b0bddbf6ab&productIndex=2&market=cvbnm&grocer=qunc&quantity=50]
+
+`{
+     "cartId": "5da94f827d1820b0bddbf6ab",
+     "email": "narayanshivansh49@gmail.com",
+     "products": [
+         {
+             "name": "Rajma Chawal",
+             "quantity": 78,
+             "price": 45,
+             "market": "Azadpur",
+             "grocer": "TheFarmStand"
+         },
+         {
+             "name": "shsh",
+             "quantity": 4,
+             "price": 5,
+             "market": "kasj",
+             "grocer": "qunc"
+         },
+         {
+             "name": "brownie",
+             "quantity": 50,
+             "price": 5,
+             "market": "cvbnm",
+             "grocer": "qunc"
+         },
+         {
+             "name": "rice",
+             "quantity": 50,
+             "price": 0,
+             "market": "cvbnm",
+             "grocer": "qunc"
+         }
+     ]
+ }`
+ 
+ 
 
 
 
