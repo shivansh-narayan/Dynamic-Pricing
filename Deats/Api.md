@@ -1,4 +1,4 @@
->> **http://localhost:8080/deats/markets**
+>> [http://localhost:8080/deats/markets]
 
 `{
       "ans": [
@@ -110,6 +110,30 @@
              "grocer": "qunc"
          }
      ]
+ }`
+ 
+>> [http://localhost:8080/deats/cart/remove?cartId=5da9897972eba53c8036c9e9&productIndex=0&market=aliganj&grocer=qwe&quantity=15] 
+
+`{
+     "cartId": "5da9897972eba53c8036c9e9",
+     "email": "hk@gmail.com",
+     "products": [
+         {
+             "name": "Onion",
+             "quantity": 50,
+             "price": 0,
+             "market": "aliganj",
+             "grocer": "qwe"
+         }
+     ]
+ }`
+ 
+ >> [http://localhost:8080/deats/cart/checkout?cartId=5da94f827d1820b0bddbf6ab]
+
+`{
+     "cartId": "5da94f827d1820b0bddbf6ab",
+     "email": "narayanshivansh49@gmail.com",
+     "products": null
  }`
  
  

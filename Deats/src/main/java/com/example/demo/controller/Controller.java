@@ -33,7 +33,7 @@ public class Controller {
 
     private static final String CART_REMOVE_API = "/cart/remove";
 
-    private static final String CART_CHECKOUT_API = "/cart/final";
+    private static final String CART_CHECKOUT_API = "/cart/checkout";
 
     private static final String CART_PRESENT_API = "/cart/present";
 
@@ -108,6 +108,7 @@ public class Controller {
         return ResponseEntity.ok().body(getCartResponse);
     }
 
+    //http://localhost:8080/deats/cart/add?cartId=5da9897972eba53c8036c9e9&productIndex=0&market=aliganj&grocer=qwe&quantity=15
     @GetMapping(CART_UPDATE_API)
     public ResponseEntity<GetCartResponse> addItem(GetCartUpdateRequest getCartUpdateRequest) {
         GetCartResponse getCartResponse = cartService.add(getCartUpdateRequest);
@@ -115,6 +116,23 @@ public class Controller {
         return ResponseEntity.ok().body(getCartResponse);
 
 
+    }
+    // http://localhost:8080/deats/cart/remove?cartId=5da9897972eba53c8036c9e9&productIndex=0&market=aliganj&grocer=qwe&quantity=15
+    @GetMapping(CART_REMOVE_API)
+    public ResponseEntity<GetCartResponse> removeItem(GetCartUpdateRequest getCartUpdateRequest) {
+
+        GetCartResponse getCartResponse = cartService.remove(getCartUpdateRequest);
+
+        return ResponseEntity.ok().body(getCartResponse);
+    }
+
+    // http://localhost:8080/deats/cart/checkout?cartId=5da94f827d1820b0bddbf6ab
+    @GetMapping(CART_CHECKOUT_API)
+    public ResponseEntity<GetCartResponse> checkout(GetCartRequest getCartRequest) {
+
+        GetCartResponse getCartResponse = cartService.checkout(getCartRequest);
+
+        return ResponseEntity.ok().body(getCartResponse);
     }
 
 

@@ -11,7 +11,7 @@ public interface CartService {
 
     GetCartResponse add(GetCartUpdateRequest getCartUpdateRequest);
 
-    GetCartResponse remove(GetCartRequest getCartRequest);
+    GetCartResponse remove(GetCartUpdateRequest getCartUpdateRequest);
 
     GetCartResponse drop(GetCartRequest getCartRequest);
 

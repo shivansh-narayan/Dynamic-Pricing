@@ -14,6 +14,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,15 +75,65 @@ public class CartServiceImpl implements CartService {
         String productName= index[productIndex];
         Products newProduct =new Products(productName,quantity,price,market,grocer);
 
+        if(products==null) {
+            products = new ArrayList<>();
+        }
+
         products.add(newProduct);
+        log.error(newProduct);
+        log.error(products);
+
+        cartsEntity.setProducts(products);
 
         cartsRepository.save(cartsEntity);
         return new GetCartResponse(cartsEntity.getCartId(),cartsEntity.getEmail(),cartsEntity.getProducts());
     }
 
     @Override
-    public GetCartResponse remove(GetCartRequest getCartRequest) {
-        return null;
+    public GetCartResponse remove(GetCartUpdateRequest getCartUpdateRequest) {
+
+        int productIndex= getCartUpdateRequest.getProductIndex();
+        String cartId = getCartUpdateRequest.getCartId();
+        String grocer = getCartUpdateRequest.getGrocer();
+        String market = getCartUpdateRequest.getMarket();
+        int quantity = getCartUpdateRequest.getQuantity();
+
+        Optional<CartsEntity> byId = cartsRepository.findById(cartId);
+        CartsEntity cartsEntity = byId.get();
+        List<Products> products = cartsEntity.getProducts();
+        int price =0 ;
+        List<MarketsEntity> all = marketsRepository.findAll();
+        for(MarketsEntity m : all)
+        {
+            if(m.getName().equalsIgnoreCase(market))
+            {
+                Grocers[] grocers = m.getGrocers();
+                for(Grocers g : grocers)
+                {
+                    if(g.getName().equalsIgnoreCase(grocer))
+                    {
+                        int[] price1 = g.getPrice();
+                        price=price1[productIndex];
+                    }
+                }
+            }
+        }
+        String[] index = {"Onion", "tomato", "rice", "wheat", "apple"};
+        String productName= index[productIndex];
+        Products newProduct =new Products(productName,quantity,price,market,grocer);
+
+        if(products==null) {
+            products = new ArrayList<>();
+        }
+
+        products.remove(newProduct);
+        log.error(newProduct);
+        log.error(products);
+
+        cartsEntity.setProducts(products);
+
+        cartsRepository.save(cartsEntity);
+        return new GetCartResponse(cartsEntity.getCartId(),cartsEntity.getEmail(),cartsEntity.getProducts());
     }
 
     @Override
@@ -92,7 +143,16 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public GetCartResponse checkout(GetCartRequest getCartRequest) {
-        return null;
+
+        String cartId = getCartRequest.getCartId();
+
+        Optional<CartsEntity> byId = cartsRepository.findById(cartId);
+        CartsEntity cartsEntity = byId.get();
+        cartsEntity.setProducts(null);
+
+        cartsRepository.save(cartsEntity);
+
+        return new GetCartResponse(cartsEntity.getCartId(),cartsEntity.getEmail(),cartsEntity.getProducts());
     }
 
     @Override
