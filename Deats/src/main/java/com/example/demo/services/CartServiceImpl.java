@@ -23,9 +23,12 @@ public class CartServiceImpl implements CartService {
 
         Optional<CartsEntity> byId = cartsRepository.findById(cartId);
 
-        
+        CartsEntity cartsEntity = byId.get();
+        GetCartResponse getCartResponse;
 
-        return null;
+        getCartResponse= new GetCartResponse(cartsEntity.getCartId(),cartsEntity.getProducts());
+
+        return getCartResponse;
 
 
     }

@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
 
                         for(int i=0;i<4;i++)
                         {
-                            temp.add(new Products(price[i],quantity[i],name[i]));
+                            temp.add(new Products(price[i],quantity[i],name[i],g.getName(),m.getName()));
                         }
                         break;
                     }

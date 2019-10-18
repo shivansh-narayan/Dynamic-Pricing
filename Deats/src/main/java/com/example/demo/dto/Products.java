@@ -13,12 +13,16 @@ public class Products {
     String name;
     int quantity;
     int price;
+    String market;
+    String grocer;
 
-    public Products(int i, int q, String s) {
+    public Products(int i, int q, String s,String m, String g) {
 
         price = i;
         quantity= q;
         name =s;
+        market=m;
+        grocer=g;
 
     }
 }

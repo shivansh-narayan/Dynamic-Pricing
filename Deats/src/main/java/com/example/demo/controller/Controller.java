@@ -85,6 +85,8 @@ public class Controller {
 
     }
 
+
+    //http://localhost:8080/deats/cart/view?cartId=5da94f827d1820b0bddbf6ab
     @GetMapping(CART_VIEW_API)
     public ResponseEntity<GetCartResponse> viewCart (GetCartRequest getCartRequest) {
 
