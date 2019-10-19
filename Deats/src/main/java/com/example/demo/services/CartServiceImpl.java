@@ -2,10 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.dto.Grocers;
 import com.example.demo.dto.Products;
-import com.example.demo.exchanges.CreateCartRequest;
-import com.example.demo.exchanges.GetCartResponse;
-import com.example.demo.exchanges.GetCartRequest;
-import com.example.demo.exchanges.GetCartUpdateRequest;
+import com.example.demo.exchanges.*;
 import com.example.demo.models.CartsEntity;
 import com.example.demo.models.MarketsEntity;
 import com.example.demo.repositories.CartsRepository;
@@ -14,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +20,9 @@ import java.util.Optional;
 @Service
 public class CartServiceImpl implements CartService {
 
+
+    @Autowired
+    DynamicService dynamicService;
     @Autowired
     CartsRepository cartsRepository;
     @Autowired
@@ -142,12 +143,16 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public GetCartResponse checkout(GetCartRequest getCartRequest) {
+    public GetCartResponse checkout(GetCartRequest getCartRequest)  {
+
+
 
         String cartId = getCartRequest.getCartId();
-
         Optional<CartsEntity> byId = cartsRepository.findById(cartId);
         CartsEntity cartsEntity = byId.get();
+        List<Products> products = cartsEntity.getProducts();
+        GetProductsResponse getProductsResponse = new GetProductsResponse(products);
+        dynamicService.update(getProductsResponse);
         cartsEntity.setProducts(null);
 
         cartsRepository.save(cartsEntity);
@@ -169,6 +174,8 @@ public class CartServiceImpl implements CartService {
             log.info("cart is not present");
             return false;
         }
+
+
 
 
     }

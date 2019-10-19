@@ -5,6 +5,8 @@ import com.example.demo.exchanges.GetCartResponse;
 import com.example.demo.exchanges.GetCartRequest;
 import com.example.demo.exchanges.GetCartUpdateRequest;
 
+import java.io.IOException;
+
 public interface CartService {
 
     GetCartResponse view(GetCartRequest getCartRequest);
@@ -15,7 +17,7 @@ public interface CartService {
 
     GetCartResponse drop(GetCartRequest getCartRequest);
 
-    GetCartResponse checkout(GetCartRequest getCartRequest);
+    GetCartResponse checkout(GetCartRequest getCartRequest) ;
 
     boolean present(GetCartRequest getCartRequest);
 

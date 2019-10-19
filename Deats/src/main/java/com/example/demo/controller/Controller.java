@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 
 @RestController
 @Log4j2
@@ -128,7 +130,7 @@ public class Controller {
 
     // http://localhost:8080/deats/cart/checkout?cartId=5da94f827d1820b0bddbf6ab
     @GetMapping(CART_CHECKOUT_API)
-    public ResponseEntity<GetCartResponse> checkout(GetCartRequest getCartRequest) {
+    public ResponseEntity<GetCartResponse> checkout(GetCartRequest getCartRequest)  {
 
         GetCartResponse getCartResponse = cartService.checkout(getCartRequest);
 
