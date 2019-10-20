@@ -29,6 +29,7 @@ public class DynamicServiceImpl implements DynamicService {
 
     public int getPrice(String productName,String market,int life,int quantity,int demand)
     {
+        demand= demand/100;
         String url = "http://192.168.137.1:5000/api/"+productName+"/"+market+"/"+life+"/"+quantity+"/"+demand; // TODO: utkash ka api daalna hai
         String newPriceString="0";
         int newPrice=0;
@@ -53,6 +54,7 @@ public class DynamicServiceImpl implements DynamicService {
             in.close();
 
             newPriceString = response.toString();
+            log.error(newPriceString);
         }
         catch (Exception e) {
             System.out.println(e);
@@ -98,22 +100,30 @@ public class DynamicServiceImpl implements DynamicService {
                     demand = m.getDemand()[i];
                     life=m.getLife()[i];
                     Grocers[] grocers = m.getGrocers();
+                    int total = 0;
                     for (Grocers g : grocers) {
                         if (g.getName().equalsIgnoreCase(grocer)) {
-                            int[] price1 = g.getPrice();
+
                             int[] quantity1 = g.getQuantity();
-                            //price1[i]=getPrice(productName,market,life,quantity,demand);
-                            // TODO : hard coding htao
-                            price1[i]=1060017;
+
+                            total+=quantity1[i];
                             quantity1[i]-=quantity;
-                            g.setPrice(price1);
+
                             g.setQuantity(quantity1);
                         }
-                        int[] demand1 = m.getDemand();
-                        demand1[i]+=quantity;
-                        m.setDemand(demand1);
-                        marketsRepository.save(m);
+                        //price1[i]=getPrice(productName,market,life,quantity,demand);
+                        // TODO : hard coding htao
+                        int[] price1 = g.getPrice();
+                        //price1[i]=1060017;
+                        price1[i]=getPrice(productName,market,life,total,demand);
+                        g.setPrice(price1);
+
                     }
+
+                    int[] demand1 = m.getDemand();
+                    demand1[i]+=quantity;
+                    m.setDemand(demand1);
+                    marketsRepository.save(m);
 
                 }
             }

@@ -81,8 +81,8 @@ public class CartServiceImpl implements CartService {
         }
 
         products.add(newProduct);
-        log.error(newProduct);
-        log.error(products);
+        //log.error(newProduct);
+        //log.error(products);
 
         cartsEntity.setProducts(products);
 
@@ -154,9 +154,7 @@ public class CartServiceImpl implements CartService {
         GetProductsResponse getProductsResponse = new GetProductsResponse(products);
         dynamicService.update(getProductsResponse);
         cartsEntity.setProducts(null);
-
         cartsRepository.save(cartsEntity);
-
         return new GetCartResponse(cartsEntity.getCartId(),cartsEntity.getEmail(),cartsEntity.getProducts());
     }
 

@@ -9,6 +9,7 @@ import com.example.demo.services.ProductService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 @RestController
 @Log4j2
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(Controller.MARKET_API_ENDPOINT)
 public class Controller {
 
@@ -40,6 +42,8 @@ public class Controller {
     private static final String CART_PRESENT_API = "/cart/present";
 
     private static final String CART_CREATE_API = "/cart/create";
+
+    private static final String GET_DEMAND_API= "/demand";
 
 
     @Autowired
@@ -97,6 +101,7 @@ public class Controller {
     public ResponseEntity<GetCartResponse> viewCart(GetCartRequest getCartRequest) {
 
         GetCartResponse getCartResponse = cartService.view(getCartRequest);
+        log.error(getCartRequest);
 
         return ResponseEntity.ok().body(getCartResponse);
     }
@@ -124,6 +129,7 @@ public class Controller {
     public ResponseEntity<GetCartResponse> removeItem(GetCartUpdateRequest getCartUpdateRequest) {
 
         GetCartResponse getCartResponse = cartService.remove(getCartUpdateRequest);
+        log.error(getCartUpdateRequest);
 
         return ResponseEntity.ok().body(getCartResponse);
     }
@@ -135,6 +141,16 @@ public class Controller {
         GetCartResponse getCartResponse = cartService.checkout(getCartRequest);
 
         return ResponseEntity.ok().body(getCartResponse);
+    }
+
+    @GetMapping(GET_DEMAND_API)
+    public ResponseEntity<CreateCartRequest> getDemand(GetDemandRequest getDemandRequest) {
+
+        Integer demand = marketService.findDemand(getDemandRequest);
+
+        CreateCartRequest c = new CreateCartRequest(Integer.toString(demand));
+
+        return ResponseEntity.ok().body(c);
     }
 
 

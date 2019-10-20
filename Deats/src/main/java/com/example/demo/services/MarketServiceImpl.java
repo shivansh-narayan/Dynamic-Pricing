@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.exchanges.GetDemandRequest;
 import com.example.demo.models.MarketsEntity;
 import com.example.demo.exchanges.GetMarketsRequest;
 import com.example.demo.exchanges.GetMarketsResponse;
@@ -30,5 +31,21 @@ public class MarketServiceImpl implements MarketService {
             temp.add(m.getName());
         }
         return new GetMarketsResponse(temp);
+    }
+
+    @Override
+    public Integer findDemand(GetDemandRequest getDemandRequest) {
+        String market = getDemandRequest.getMarket();
+        int index = getDemandRequest.getIndex();
+        List<MarketsEntity> all=marketsRepository.findAll();
+        int [] demand = new int[5];
+        for(MarketsEntity m : all) {
+            if(m.getName().equalsIgnoreCase(market))
+            {
+                 demand = m.getDemand();
+            }
+        }
+        return  demand[index];
+
     }
 }
