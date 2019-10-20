@@ -73,7 +73,7 @@
  }`
  
  
- {"Onion", "tomato", "rice", "wheat", "apple"}   ye product ka index hai
+ {"Apple", "Banana", "rice", "wheat", "apple"};   ye product ka index hai
  
  >>[http://localhost:8080/deats/cart/add?cartId=5da94f827d1820b0bddbf6ab&productIndex=2&market=cvbnm&grocer=qunc&quantity=50]
 

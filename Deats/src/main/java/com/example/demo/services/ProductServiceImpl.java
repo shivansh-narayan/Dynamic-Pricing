@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
                         int[] price = g.getPrice();
                         int[] quantity = g.getQuantity();
 
-                        String[] name= {"Onion", "tomato", "rice", "wheat", "apple"};
+                        String[] name= {"Apple", "Banana", "rice", "wheat", "apple"};
 
                         for(int i=0;i<4;i++)
                         {

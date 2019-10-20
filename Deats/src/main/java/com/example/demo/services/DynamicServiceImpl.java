@@ -29,8 +29,9 @@ public class DynamicServiceImpl implements DynamicService {
 
     public int getPrice(String productName,String market,int life,int quantity,int demand)
     {
-        demand= demand/100;
-        String url = "http://192.168.137.1:5000/api/"+productName+"/"+market+"/"+life+"/"+quantity+"/"+demand; // TODO: utkash ka api daalna hai
+        //demand= demand/10;
+        float bhejo = (float)demand/100;
+        String url = "http://192.168.137.1:5000/api/"+productName+"/"+market+"/"+life+"/"+quantity+"/"+bhejo; // TODO: utkash ka api daalna hai
         String newPriceString="0";
         int newPrice=0;
         try {
@@ -60,9 +61,9 @@ public class DynamicServiceImpl implements DynamicService {
             System.out.println(e);
         }
 
-        newPrice = Integer.parseInt(newPriceString);
+        //newPrice = Float.parseFloat(newPriceString);
 
-        return newPrice;
+        return (int)Float.parseFloat(newPriceString);
     }
 
     @Override
@@ -83,7 +84,7 @@ public class DynamicServiceImpl implements DynamicService {
 
             // finding index
 
-            String[] index = {"Onion", "tomato", "rice", "wheat", "apple"};
+            String[] index = {"Apple", "Banana", "rice", "wheat", "apple"};
             int i=0; // actuall index
             for(String s : index)
             {
@@ -116,6 +117,7 @@ public class DynamicServiceImpl implements DynamicService {
                         int[] price1 = g.getPrice();
                         //price1[i]=1060017;
                         price1[i]=getPrice(productName,market,life,total,demand);
+                        log.error(price1[i]);
                         g.setPrice(price1);
 
                     }

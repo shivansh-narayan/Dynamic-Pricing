@@ -72,7 +72,7 @@ public class CartServiceImpl implements CartService {
                 }
             }
         }
-        String[] index = {"Onion", "tomato", "rice", "wheat", "apple"};
+        String[] index = {"Apple", "Banana", "rice", "wheat", "apple"};
         String productName= index[productIndex];
         Products newProduct =new Products(productName,quantity,price,market,grocer);
 
@@ -119,7 +119,7 @@ public class CartServiceImpl implements CartService {
                 }
             }
         }
-        String[] index = {"Onion", "tomato", "rice", "wheat", "apple"};
+        String[] index = {"Apple", "Banana", "rice", "wheat", "apple"};
         String productName= index[productIndex];
         Products newProduct =new Products(productName,quantity,price,market,grocer);
 
