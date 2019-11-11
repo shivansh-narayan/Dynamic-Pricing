@@ -20,7 +20,7 @@ To use the app run all four component concurrently. You will have to change the 
 * **Shivansh Narayan** - *Spring Backend* - [GitHub](https://github.com/narayanshivansh49)
 * **Hardik Mehta** - *Admin Interface* - [GitHub](https://github.com/PurpleBooth)
 * **Utkarsh Gupta** - *ML Model-Flask* - [GitHub](https://github.com/PurpleBooth)
-* **Harsh Kothari** - *Android App* - [GitHub](https://github.com/PurpleBooth)
+* **Harsh Kothari** - *Android App* - [GitHub](https://github.com/Harsh-87)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
